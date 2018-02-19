@@ -62,5 +62,8 @@
     <input type="submit" value="Delete">
 </form>
 <br>
+<form method="get" action="/">
+    <input type="submit" value="Back">
+</form>
 </body>
 </html>
