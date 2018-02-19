@@ -34,5 +34,8 @@ INSERT INTO book (title, description, author, isbn, printyear) VALUES ('Test boo
 INSERT INTO book (title, description, author, isbn, printyear) VALUES ('Test book valueOf int3', 'Краткое описание книги', 'Author of book613', '5-05-0746-22', 1998);
 INSERT INTO book (title, description, author, isbn, printyear) VALUES ('Test book valueOf int4', 'Краткое описание книги', 'Author of book651', '5-05-0746-21', 2000);
 INSERT INTO book (title, description, author, isbn, printyear) VALUES ('Test book valueOf int2', 'Краткое описание книги', 'Author of book651', '5-05-0746-21', 2001);
-INSERT INTO book (title, description, author, isbn, printyear) VALUES ('Test book valueOf int', 'Краткое описание книги', 'Author of book654', '5-05-0746-23', 2003);
-INSERT INTO book (title, description, author, isbn, printyear) VALUES ('Test book valueOf int3', 'Краткое описание книги', 'Author of book61', '5-05-0746-21', 2004);
+INSERT INTO book (title, description, author, isbn, printyear) VALUES ('Test book valueOf int', 'Краткое описание книги', 'Author of book654', '5-05-0846-23', 2003);
+INSERT INTO book (title, description, author, isbn, printyear) VALUES ('Test book valueOf int3', 'Краткое описание книги', 'Author of book61', '5-05-0846-21', 2004);
+INSERT INTO book (title, description, author, isbn, printyear) VALUES ('Test book valueOf int11', 'Краткое описание книги', 'Author of book12', '5-05-6746-21', 2001);
+INSERT INTO book (title, description, author, isbn, printyear) VALUES ('Test book valueOf int3', 'Краткое описание книги', 'Author of book31', '5-05-0716-23', 2003);
+INSERT INTO book (title, description, author, isbn, printyear) VALUES ('Test book valueOf int55', 'Краткое описание книги', 'Author of book15', '5-05-0546-21', 2004);

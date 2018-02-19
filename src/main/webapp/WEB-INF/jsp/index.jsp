@@ -23,29 +23,6 @@
 </head>
 <body>
 
-<%--<h2>HTML Table</h2>--%>
-
-<%--<table>
-    <tr>
-        <th>ID</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Action</th>
-    </tr>
-    <c:forEach var = "list" items="${lists}">
-    <tr>
-        <td>${list.id}</td>
-        <td>${list.firstName}</td>
-        <td>${list.lastName}</td>
-        <td>
-            <a href="/view/${list.id}">View</a>
-            <a href="/delete/${list.id}">Delete</a>
-            <a href="/edit/${list.id}">Edit</a>
-        </td>
-    </tr>
-    </c:forEach>
-</table>--%>
-
 <table>
     <tr>
         <th>ID</th>
@@ -106,35 +83,15 @@
     <c:if test="${page + 1 <= maxPages}">
     <a href='<c:out value="${next}" />' class="pn next">Next</a>
     </c:if>
-<%--<form method="post" action="/save">--%>
 <form method="request" action="/add">
-    <%--<input type="hidden" name="id" value=""/>
-    Title:<br>
-    <input type="text" name="title"/>
-    <br>
-    Description:<br>
-    <input type="text" name="description"/>
-    <br>
-    Author:<br>
-    <input type="text" name="author"/>
-    <br>
-    Isbn:<br>
-    <input type="text" name="isbn"/>
-    <br>
-    Year:<br>
-    <input type="text" name="printyear"/>
-    <br><br>
-    <input type="hidden" name="readalready" value=""/>--%>
     <input type="submit" value="Add book">
     <br>
 </form>
         <br>
         <form method="post" action="/search">
-            <input type="hidden" name="id" value=""/>
             Search by year:<br>
             <input type="number" name="printyear" min="1000" max="2018"/>
-            <br><br>
-            <input type="hidden" name="readalready" value=""/>
+            <br>
             <input type="submit" value="Submit">
         </form>
 </body>

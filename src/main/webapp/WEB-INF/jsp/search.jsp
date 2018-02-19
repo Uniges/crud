@@ -33,7 +33,7 @@
         <th>Year</th>
         <th>isRead</th>
     </tr>
-    <c:forEach var = "list" items="${listUsers}">
+    <c:forEach var = "list" items="${search}">
         <tr>
             <td>${list.id}</td>
             <td>${list.title}</td>
@@ -45,5 +45,9 @@
         </tr>
     </c:forEach>
 </table>
+<br>
+<form method="get" action="/">
+    <input type="submit" value="Back">
+</form>
 </body>
 </html>

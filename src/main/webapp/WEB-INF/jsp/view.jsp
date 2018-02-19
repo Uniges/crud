@@ -23,8 +23,6 @@
 </head>
 <body>
 
-<%--<h2>HTML Table</h2>--%>
-
 <table>
     <tr>
         <th>ID</th>
@@ -56,10 +54,6 @@
     </tr>
 </table>
 <br>
-<%--<form method="post" action="/read/${lists.id}">
-    <input type="submit" value="Read">
-</form>
-<br>--%>
 <form method="post" action="/editor/${lists.id}">
     <input type="submit" value="Edit">
 </form>
@@ -68,8 +62,5 @@
     <input type="submit" value="Delete">
 </form>
 <br>
-<%--<form method="post" action="/">--%>
-    <%--<input type="submit" value="Back">--%>
-<%--</form>--%>
 </body>
 </html>

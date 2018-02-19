@@ -2,18 +2,9 @@ package com.developer.SpringMySQL.models;
 
 import javax.persistence.*;
 
-//@Table(name = "appusers")
 @Entity
 @Table(name = "book")
 public class AppUsers {
-
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    public int id;
-//    @Column(name = "firstname")
-//    public String firstName;
-//    @Column(name = "lastname")
-//    public String lastName;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int id;
@@ -31,11 +22,8 @@ public class AppUsers {
     @Column(name = "readalready")
 //    @Type(type = "org.hibernate.type.NumericBooleanType")
     public boolean readAlready;
-//    @Column(name = "readalready")
-//    public Boolean readAlready;
 
     public AppUsers() {
-        //this.readAlready = false;
     }
 
     public AppUsers(String title, String description, String author, String isbn, int printYear/*, boolean readAlready*/) {
@@ -115,32 +103,4 @@ public class AppUsers {
                 ", readAlready=" + readAlready +
                 '}';
     }
-    //        public AppUsers(String firstName, String lastName) {
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//    }
-//
-//    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
-//
-//    public String getFirstName() {
-//        return firstName;
-//    }
-//
-//    public void setFirstName(String firstName) {
-//        this.firstName = firstName;
-//    }
-//
-//    public String getLastName() {
-//        return lastName;
-//    }
-//
-//    public void setLastName(String lastName) {
-//        this.lastName = lastName;
-//    }
 }

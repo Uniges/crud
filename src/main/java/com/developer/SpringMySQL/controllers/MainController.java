@@ -34,15 +34,11 @@ public class MainController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView listUsers(@RequestParam(required = false) Integer page) {
         ModelAndView modelAndView = new ModelAndView("index");
-        //System.out.println(appRepo.findOne(0).getId());
 
         List<AppUsers> users = new ArrayList<AppUsers>();
-        //System.out.println(appRepo.count());
         for (int i = 0; i < appRepo.count()+500; i++) {
-            //if (!(appRepo.findOne(i).getId() > 0))
             if (appRepo.findOne(i) != null)
             users.add(appRepo.findOne(i));
-            //System.out.println(appRepo.findOne(i).getAuthor());
         }
         PagedListHolder<AppUsers> pagedListHolder = new PagedListHolder<AppUsers>(users);
         pagedListHolder.setPageSize(10);
@@ -61,9 +57,7 @@ public class MainController {
         else if(page <= pagedListHolder.getPageCount()) {
             pagedListHolder.setPage(page-1);
             modelAndView.addObject("listUsers", pagedListHolder.getPageList());
-        } /*else {
-            modelAndView.addObject("listUsers", pagedListHolder.getPageList());
-        }*/
+        }
 
         modelAndView.addObject("user", new AppUsers());
 
@@ -75,45 +69,8 @@ public class MainController {
     public ModelAndView goAddPage() {
         ModelAndView mv = new ModelAndView("add");
         mv.addObject("lists", appRepo.findAll());
-        System.out.println(appRepo.count());
         return mv;
     }
-
-//    @RequestMapping(value = "/")
-//    public ModelAndView listOfUsers(/*@RequestParam(required = false) Integer page, @RequestParam(required = false) String userName*/) {
-//        ModelAndView modelAndView = new ModelAndView("index");
-//        List<AppUsers> users = new ArrayList<AppUsers>();
-//
-//        for (int i = 0; i < appRepo.count(); i++) {
-//            users.add(appRepo.findOne(i));
-//        }
-//
-//        Integer page = 1;
-//
-//        PagedListHolder<AppUsers> pagedListHolder = new PagedListHolder<AppUsers>(users);
-//        pagedListHolder.setPageSize(10);
-//        modelAndView.addObject("maxPages", pagedListHolder.getPageCount());
-//
-//        if (page == null || page < 1 || page > pagedListHolder.getPageCount()) {
-//            page = 1;
-//        }
-//        modelAndView.addObject("page", page);
-//        if (page == null || page < 1 || page > pagedListHolder.getPageCount()) {
-//            pagedListHolder.setPage(0);
-//            modelAndView.addObject("listUsers", pagedListHolder.getPageList());
-//        } else if (page <= pagedListHolder.getPageCount()) {
-//            pagedListHolder.setPage(page - 1);
-//            modelAndView.addObject("listUsers", pagedListHolder.getPageList());
-//        }
-//        return modelAndView;
-//    }
-
-//    @RequestMapping("/editor")
-//    public ModelAndView goEditPage(@RequestParam("id") String id) {
-//        ModelAndView mv = new ModelAndView("edit");
-//        mv.addObject("lists", appRepo.findOne(Integer.valueOf(id)));
-//        return mv;
-//    }
 
     //Сохраняем результат добавления или редактирования
     @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -149,28 +106,21 @@ public class MainController {
             appUsers.readAlready = true;
             appRepo.save(appUsers);
         }
-        System.out.println(appRepo.count());
         return mv;
     }
 
-//    @RequestMapping(value = "/read/{id}", method = RequestMethod.POST)
-//    public ModelAndView doRead(@PathVariable("id") int id) {
-//        ModelAndView mv;
-//        if (!appRepo.findOne(id).readAlready) {
-//            AppUsers appUsers = (AppUsers)appRepo.findOne(id);
-//            appUsers.readAlready = true;
-//            appRepo.save(appUsers);
-//            mv = new ModelAndView("bookwasread");
-//        } else {
-//            mv = new ModelAndView("bookwasalreadyread");
-//        }
-//        return mv;
-//    }
-
+    //Запрос с поля поиска на главной странице
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public ModelAndView doSearch(@PathVariable("id") int id) {
+    public ModelAndView doSearch(@RequestParam("printyear") String printYear) {
         ModelAndView mv = new ModelAndView("search");
-        appRepo.findOne(id);
+        List<AppUsers> users = new ArrayList<AppUsers>();
+        for (int i = 0; i < appRepo.count()+500; i++) {
+            if (appRepo.findOne(i) != null && appRepo.findOne(i).printYear == Integer.parseInt(printYear)) {
+                users.add(appRepo.findOne(i));
+            }
+        }
+        mv.addObject("search", users);
+        mv.addObject("user", new AppUsers());
         return mv;
     }
 
@@ -181,54 +131,10 @@ public class MainController {
         return mv;
     }
 
-//    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-//    public ModelAndView doEdit(@PathVariable("id") int id) {
-//        ModelAndView mv = new ModelAndView("edit");
-//        mv.addObject("lists", appRepo.findOne(id));
-//        return mv;
-//    }
-
     @RequestMapping(value = "/editor/{id}", method = RequestMethod.POST)
     public ModelAndView doEdit2(@PathVariable("id") int id) {
         ModelAndView mv = new ModelAndView("edit");
         mv.addObject("lists", appRepo.findOne(id));
         return mv;
     }
-
-
-//    @RequestMapping(value = "/save", method = RequestMethod.POST)
-//    public ModelAndView doSave(@RequestParam("id") String id, @RequestParam("firstname") String firstName, @RequestParam("lastname") String lastName) {
-//        ModelAndView mv = new ModelAndView("redirect:/");
-//        AppUsers users;
-//        if (!id.isEmpty()) {
-//            users = (AppUsers) appRepo.findOne(Integer.parseInt(id));
-//        } else {
-//            users = new AppUsers();
-//        }
-//        users.setFirstName(firstName);
-//        users.setLastName(lastName);
-//        appRepo.save(users);
-//        return mv;
-//    }
-
-//    @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
-//    public ModelAndView doView(@PathVariable("id") int id) {
-//        ModelAndView mv = new ModelAndView("view");
-//        mv.addObject("lists", appRepo.findOne(id));
-//        return mv;
-//    }
-
-//    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-//    public ModelAndView doDelete(@PathVariable("id") int id) {
-//        ModelAndView mv = new ModelAndView("redirect:/");
-//        appRepo.delete(id);
-//        return mv;
-//    }
-
-//    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-//    public ModelAndView doEdit(@PathVariable("id") int id) {
-//        ModelAndView mv = new ModelAndView("edit");
-//        mv.addObject("lists", appRepo.findOne(id));
-//        return mv;
-//    }
 }
